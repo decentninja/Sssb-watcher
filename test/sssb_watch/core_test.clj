@@ -4,9 +4,10 @@
             [clj-http.client :as client]
             [clojure.data.json :as json]))
 
+
 (deftest http
-  (testing "HTTP package, connection and remote"
-    (is (string? (download-data)))))
+  (testing "HTTP package and connection"
+    (is (string? (download-data "http://decent.ninja")))))
 
 (def stub-response
   (slurp "/Users/andreas/Documents/sssb-watch/response"))
