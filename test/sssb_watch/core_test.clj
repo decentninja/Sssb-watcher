@@ -54,3 +54,9 @@
     (reset! already-sent-to-atom #{1 2 3})
     (fix-bounces [{"objektNr" 2}])
     (is (= @already-sent-to-atom #{2}))))
+
+(deftest required-enviroment
+  (testing "if all required enviroment variables are present"
+    (is (thrown? Exception (check-env {} ["HOME"])))
+    (check-env {"HOME" "/home/221B"} ["HOME"])))
+

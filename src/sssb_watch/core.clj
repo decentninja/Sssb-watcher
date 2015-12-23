@@ -56,12 +56,12 @@
                                    @already-sent-to-atom)))
 
 (defn send-email [to-be-sent]
-  (postal/send-message {:host "smtp.gmail.com"
-                        :user "encrypt.wave"
+  (postal/send-message {:host (System/getenv "MAIL_SMTP")
+                        :user (System/getenv "MAIL_USER")
                         :pass (System/getenv "MAIL_PASS")
                         :ssl :y}
-                       {:from "encrypt.wave@gmail.com"
-                        :to "lat.zaft@gmail.com"
+                       {:from (System/getenv "MAIL_USER")
+                        :to (System/getenv "MAIL_RECIVER")
                         :subject "SSSB Watch"
                         :body (clojure.string/join "\n" (map #(get % "detaljUrl") to-be-sent))}))
 
@@ -73,7 +73,14 @@
         (add-to-sent to-be-sent) 
         (when (not (empty? to-be-sent)) (send-email to-be-sent)))))
 
+(defn check-env [enviroment required]
+  (doseq [r required]
+    (when (not (contains? enviroment r))
+      (throw (Exception. (clojure.string/join ["Enviroment variable " required " is required to run"]))))))
+
 (defn -main
   [& args]
-  (do (action!)
+  (do (check-env (System/getenv) ["MAIL_USER" "MAIL_PASS" "MAIL_RECIVER" "MAIL_SMTP"])
+      ;(test-email) ;TODO
+      (action!)
       (set-interval action! (* (rand-int 60) 60 1000))))
