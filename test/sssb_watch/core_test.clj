@@ -26,15 +26,7 @@
 
 (deftest email
   (testing "sending email"
-    (is (= (get (postal/send-message {:host "smtp.gmail.com"
-                                      :user "encrypt.wave"
-                                      :pass (System/getenv "MAIL_PASS")
-                                      :ssl :y}
-                                     {:from "encrypt.wave@gmail.com"
-                                      :to "lat.zaft@gmail.com"
-                                      :subject "Test"
-                                      :body "test"}) 
-                :message)
+    (is (= (:message (send-email (System/getenv "MAIL_RECIVER") "Test" "Test"))
            "messages sent"))))
 
 (deftest filter-already
