@@ -5,7 +5,7 @@
   (:gen-class))
 
 
-(def AREAS-OF-INTEREST ["Roslagstull" "Nyponet" "Forum" "Domus" "Mjölner"])
+(def AREAS-OF-INTEREST ["Roslagstull" "Nyponet" "Forum" "Domus" "Mjölner" "Jerum"])
 (def SEARCH-URL "https://www.sssb.se/widgets/?omraden=&objektTyper=BOASL&hyraMax=&actionId=&paginationantal=all&callback=jQuery172047263744708705435_1450647604905&widgets[]=objektsummering%40lagenheter&widgets[]=alert&widgets[]=objektsummering%40lagenheter&widgets[]=objektfilter%40lagenheter&widgets[]=objektsortering%40lagenheter&widgets[]=objektlistabilder%40lagenheter&widgets[]=paginering%40lagenheter&widgets[]=pagineringantal%40lagenheter&widgets[]=pagineringgofirst%40lagenheter&widgets[]=pagineringgonew%40lagenheter&widgets[]=pagineringlista%40lagenheter&widgets[]=pagineringgoold%40lagenheter&widgets[]=pagineringgolast%40lagenheter&_=1450647605589")
 
 (defn download-data [from]
